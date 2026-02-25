@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import '../models/session.dart';
 import '../models/message.dart';
 import '../models/provider_settings.dart';
-import 'database_service.dart';
+import '../services/database_service.dart';
 
 /// Chat provider for managing chat state
 class ChatProvider extends ChangeNotifier {

@@ -461,27 +461,30 @@ class _MessageBubble extends StatelessWidget {
 }
 
 class _ChatCallback implements ChatCallback {
-  final VoidCallback onStart;
-  final void Function(String) onChunk;
-  final void Function(ChatResponse) onComplete;
-  final void Function(String) onError;
+  final VoidCallback _onStart;
+  final void Function(String) _onChunk;
+  final void Function(ChatResponse) _onComplete;
+  final void Function(String) _onError;
 
   _ChatCallback({
-    required this.onStart,
-    required this.onChunk,
-    required this.onComplete,
-    required this.onError,
-  });
+    required VoidCallback onStart,
+    required void Function(String) onChunk,
+    required void Function(ChatResponse) onComplete,
+    required void Function(String) onError,
+  })  : _onStart = onStart,
+        _onChunk = onChunk,
+        _onComplete = onComplete,
+        _onError = onError;
 
   @override
-  void onStart() => onStart();
+  void onStart() => _onStart();
 
   @override
-  void onChunk(String chunk) => onChunk(chunk);
+  void onChunk(String chunk) => _onChunk(chunk);
 
   @override
-  void onComplete(ChatResponse response) => onComplete(response);
+  void onComplete(ChatResponse response) => _onComplete(response);
 
   @override
-  void onError(String error) => onError(error);
+  void onError(String error) => _onError(error);
 }

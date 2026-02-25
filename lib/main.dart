@@ -14,7 +14,11 @@ class ChatboxApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ChatProvider()..loadProviders().then((_) => _.loadSessions()),
+      create: (_) {
+        final provider = ChatProvider();
+        provider.loadProviders().then((_) => provider.loadSessions());
+        return provider;
+      },
       child: MaterialApp(
         title: 'Chatbox AI',
         debugShowCheckedModeBanner: false,
